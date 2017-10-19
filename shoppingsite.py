@@ -75,6 +75,12 @@ def show_shopping_cart():
     # Make sure your function can also handle the case wherein no cart has
     # been added to the session
     cart_dict = session["cart"]
+
+    if len(cart_dict) == 0:
+        
+        ##figure out what other code to add to deal wtih empty cart
+        return render_template("cart.html")
+
     print cart_dict
     melon_ordered = []
     order_total = 0
@@ -96,7 +102,8 @@ def show_shopping_cart():
 
     session["order_total"] = order_total
 
-    return render_template("cart.html")
+    return render_template("cart.html", total_cost=order_total, 
+                                        list_of_melon_objects=melon_ordered)
 
 
 @app.route("/add_to_cart/<melon_id>")
