@@ -3,6 +3,9 @@
 
 {% block body %}
 
+cart: {{ session["cart"] }} 
+order_total: 
+
     <table class="table table-striped">
         <thead>
         <tr>
@@ -40,7 +43,7 @@
         </tbody>
     </table>
 
-    <h3>Total: $27.00</h3>
+    <h3>Total: ${{ session["order_total"] }}</h3>
 
     <a href="/checkout" class="btn btn-large btn-primary">Check Out</a>
 

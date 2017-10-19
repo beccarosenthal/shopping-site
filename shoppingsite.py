@@ -74,6 +74,27 @@ def show_shopping_cart():
     #
     # Make sure your function can also handle the case wherein no cart has
     # been added to the session
+    cart_dict = session["cart"]
+    print cart_dict
+    melon_ordered = []
+    order_total = 0
+    for melon in cart_dict:
+        #get instance of melon object
+        melon_object = melons.get_by_id(melon)
+        #cost multiples price of melon with qty in cart
+        cost = melon_object.price * cart_dict[melon]
+        #cost added as attribute
+
+        melon_object.cost = cost
+        
+        order_total += cost
+        
+        melon_object.qty = cart_dict[melon]
+
+        melon_ordered.append(melon_object)
+        print melon_ordered
+
+    session["order_total"] = order_total
 
     return render_template("cart.html")
 
