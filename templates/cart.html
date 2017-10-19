@@ -13,15 +13,17 @@
         </tr>
         </thead>
         <tbody>
-            {% for melon in list_of_melon_objects %}
+            {%if list_of_melon_objects: %}
+                {% for melon in list_of_melon_objects %}
 
-                <tr>
-                    <td>{{ melon.common_name }}</td>
-                    <td>{{ melon.qty }}</td>
-                    <td>{{ melon.display_price }}</td>
-                    <td>{{ melon.display_cost}}</td>
-                </tr>
-            {% endfor %}
+                    <tr>
+                        <td>{{ melon.common_name }}</td>
+                        <td>{{ melon.qty }}</td>
+                        <td>{{ melon.display_price }}</td>
+                        <td>{{ melon.display_cost}}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
         </tbody>
     </table>
 
