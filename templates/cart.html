@@ -3,8 +3,6 @@
 
 {% block body %}
 
-{{ total_cost }}, {{list_of_melon_objects}}
-
     <table class="table table-striped">
         <thead>
         <tr>
@@ -18,16 +16,16 @@
             {% for melon in list_of_melon_objects %}
 
                 <tr>
-                    <td>{{ melon.melon_type }}</td>
+                    <td>{{ melon.common_name }}</td>
                     <td>{{ melon.qty }}</td>
-                    <td>${{ melon.price }}</td>
-                    <td>${{ melon.cost}}</td>
+                    <td>{{ melon.display_price }}</td>
+                    <td>{{ melon.display_cost}}</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 
-    <h3>Total: ${{ session["order_total"] }}</h3>
+    <h3>Total: {{ session["order_total"] }}</h3>
 
     <a href="/checkout" class="btn btn-large btn-primary">Check Out</a>
 

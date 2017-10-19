@@ -94,13 +94,20 @@ def show_shopping_cart():
         melon_object.cost = cost
         
         order_total += cost
-        
+
+        #make pretty price to display when we print cart
+        display_price = melon_object.price_str()
+        melon_object.display_price = display_price
+
+        display_cost = "${:.2f}".format(melon_object.cost)
+        melon_object.display_cost = display_cost
+
         melon_object.qty = cart_dict[melon]
 
         melon_ordered.append(melon_object)
         print melon_ordered
 
-    session["order_total"] = order_total
+    session["order_total"] = "${:.2f}".format(order_total)
 
     return render_template("cart.html", total_cost=order_total, 
                                         list_of_melon_objects=melon_ordered)
