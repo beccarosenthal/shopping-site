@@ -40,7 +40,8 @@ def list_melons():
     return render_template("all_melons.html",
                            melon_list=melon_list)
 
-
+##Note for Jono/Aksim:
+##Where is the html melon_id string generated from
 @app.route("/melon/<melon_id>")
 def show_melon(melon_id):
     """Return page showing the details of a given melon.
@@ -64,7 +65,7 @@ def show_shopping_cart():
 
     melon_ordered = []
     order_total = 0
-    
+
     for melon in cart_dict:
         #get instance of melon object
         melon_object = melons.get_by_id(melon)
@@ -73,7 +74,7 @@ def show_shopping_cart():
         #cost added as attribute
 
         melon_object.cost = cost
-        
+
         order_total += cost
 
         #make pretty price to display when we print cart
@@ -89,9 +90,8 @@ def show_shopping_cart():
 
     session["order_total"] = "${:.2f}".format(order_total)
 
-    return render_template("cart.html", total_cost=order_total, 
+    return render_template("cart.html", total_cost=order_total,
                                         list_of_melon_objects=melon_ordered)
-
 
 @app.route("/add_to_cart/<melon_id>")
 def add_to_cart(melon_id):
@@ -113,7 +113,7 @@ def add_to_cart(melon_id):
     flash("You added a melon to your cart!")
 
     # #bring user to the cart
-
+    ###WHEN EDITING A SESSION,
     return redirect("/cart")
 
 
@@ -161,4 +161,5 @@ def checkout():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")
+
